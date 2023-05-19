@@ -14,6 +14,14 @@ class CompaniesRepository {
 
     return row;
   }
+
+  async delete(id: string) {
+    const deleteOp = await prisma.company.delete({
+      where: { id: Number(id) }
+    });
+
+    return deleteOp;
+  }
 }
 
 export default new CompaniesRepository();

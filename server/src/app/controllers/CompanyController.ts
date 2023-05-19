@@ -15,6 +15,14 @@ class CompanyController {
 
     response.json(company);
   }
+
+  async delete(request: Request, response: Response) {
+    const { id } = request.params;
+
+    await CompaniesRepository.delete(id);
+
+    response.sendStatus(204);
+  }
 }
 
 export default new CompanyController();
