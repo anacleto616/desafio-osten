@@ -6,6 +6,14 @@ class CompaniesRepository {
 
     return row;
   }
+
+  async findById(id: string) {
+    const row = await prisma.company.findUnique({
+      where: { id: Number(id) }
+    });
+
+    return row;
+  }
 }
 
 export default new CompaniesRepository();
