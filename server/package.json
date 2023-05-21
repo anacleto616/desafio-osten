@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "tsx watch ./src/index.ts"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "author": "Rafael Anacleto",
   "license": "MIT",
   "devDependencies": {
