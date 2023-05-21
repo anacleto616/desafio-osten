@@ -12,6 +12,7 @@
   "author": "Rafael Anacleto",
   "license": "MIT",
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.1.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/node": "^20.2.0",
@@ -19,6 +20,7 @@
     "@typescript-eslint/parser": "^5.59.6",
     "eslint": "^8.40.0",
     "prisma": "^4.14.1",
+    "prisma-erd-generator": "^1.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
