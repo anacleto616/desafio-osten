@@ -13,7 +13,10 @@ class CompaniesRepository {
 
   async findById(id: string) {
     const row = await prisma.company.findUnique({
-      where: { id: Number(id) }
+      where: { id: Number(id) },
+      include: {
+        address: { }
+      }
     });
 
     return row;
