@@ -1,4 +1,5 @@
 import prisma from '../libraries/prisma';
+import { CompanyType } from '../types/CompanyType';
 
 class CompaniesRepository {
   async findAll() {
@@ -16,6 +17,25 @@ class CompaniesRepository {
       where: { id: Number(id) },
       include: {
         address: { }
+      }
+    });
+
+    return row;
+  }
+
+  async create({ name, address: [{street_name, number, district, city, state}] }: CompanyType) {
+    const row = prisma.company.create({
+      data: {
+        name,
+        address: {
+          create: [{
+            street_name,
+            number,
+            district,
+            city,
+            state
+          },]
+        }
       }
     });
 
