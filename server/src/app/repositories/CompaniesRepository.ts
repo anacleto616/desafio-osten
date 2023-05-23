@@ -23,6 +23,14 @@ class CompaniesRepository {
     return row;
   }
 
+  async findByName(name: string) {
+    const row = await prisma.company.findUnique({
+      where: { name }
+    });
+
+    return row;
+  }
+
   async create({ name, address: [{street_name, number, district, city, state}] }: CompanyType) {
     const row = prisma.company.create({
       data: {

@@ -20,6 +20,12 @@ class CompanyController {
   async store(request: Request, response: Response) {
     const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
 
+    const nameExists = await CompaniesRepository.findByName(name);
+
+    if (nameExists) {
+      return response.status(400).json({error: 'This name is already in use.'});
+    }
+
     await CompaniesRepository.create({ name, address: [{ street_name, number, district, city, state }] });
 
     response.status(200).json({message: 'Company created successfully.'});
