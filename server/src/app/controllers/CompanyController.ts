@@ -25,6 +25,22 @@ class CompanyController {
     response.status(200).json({message: 'Company created successfully.'});
   }
 
+  async update(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
+
+    const companyExists = await CompaniesRepository.findById(id);
+
+    if (!companyExists) {
+      return response.status(404).json({ error: 'Company not found.' });
+    }
+
+    await CompaniesRepository.update(id, { name, address: [{ street_name, number, district, city, state }] });
+
+    response.status(200).json({message: 'Company updated successfully.'});
+  }
+
   async delete(request: Request, response: Response) {
     const { id } = request.params;
 

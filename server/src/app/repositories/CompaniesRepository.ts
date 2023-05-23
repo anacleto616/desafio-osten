@@ -42,6 +42,29 @@ class CompaniesRepository {
     return row;
   }
 
+  async update(id: string, { name, address: [{ street_name, number, district, city, state }] }: CompanyType) {
+    const row = prisma.company.update({
+      where: { id: Number(id) },
+      data: {
+        name,
+        address: {
+          update: [{
+            where: { id: Number(id) },
+            data: {
+              street_name,
+              number,
+              district,
+              city,
+              state
+            }
+          },]
+        }
+      }
+    });
+
+    return row;
+  }
+
   async delete(id: string) {
     const deleteOp = await prisma.company.delete({
       where: { id: Number(id) }
