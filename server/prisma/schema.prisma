@@ -33,7 +33,7 @@ model Address {
   state       String
   company_id  Int
 
-  company Company @relation(fields: [company_id], references: [id])
+  company Company @relation(fields: [company_id], references: [id], onDelete: Cascade)
 
   @@map("adresses")
 }
