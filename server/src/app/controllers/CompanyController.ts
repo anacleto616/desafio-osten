@@ -25,6 +25,10 @@ class CompanyController {
   async store(request: Request, response: Response): Promise<void | Record<string, any>>  {
     const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
 
+    if (!name) {
+      return response.status(400).json({ error: 'Name is required.' });
+    }
+
     const nameExists = await CompaniesRepository.findByName(name);
 
     if (nameExists) {
@@ -41,10 +45,20 @@ class CompanyController {
 
     const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
 
+    if (!name) {
+      return response.status(400).json({ error: 'Name is required.' });
+    }
+
     const companyExists = await CompaniesRepository.findById(id);
 
     if (!companyExists) {
       return response.status(404).json({ error: 'Company not found.' });
+    }
+
+    const companyByName = await CompaniesRepository.findByName(name);
+
+    if (companyByName && companyByName.id !== Number(id)) {
+      return response.status(400).json({ error: 'This name is already in use.' });
     }
 
     await CompaniesRepository.update(id, { name, address: [{ street_name, number, district, city, state }] });
