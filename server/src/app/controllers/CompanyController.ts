@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import CompaniesRepository from '../repositories/CompaniesRepository';
 import { CompanyType } from '../types/CompanyType';
@@ -17,21 +18,21 @@ class CompanyController {
     response.json(company);
   }
 
-  async store(request: Request, response: Response) {
+  async store(request: Request, response: Response): Promise<void | Record<string, any>>  {
     const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
 
     const nameExists = await CompaniesRepository.findByName(name);
 
     if (nameExists) {
-      return response.status(400).json({error: 'This name is already in use.'});
+      return response.status(400).json({ error: 'This name is already in use.' });
     }
 
     await CompaniesRepository.create({ name, address: [{ street_name, number, district, city, state }] });
 
-    response.status(200).json({message: 'Company created successfully.'});
+    response.status(200).json({ message: 'Company created successfully.' });
   }
 
-  async update(request: Request, response: Response) {
+  async update(request: Request, response: Response): Promise<void | Record<string, any>>  {
     const { id } = request.params;
 
     const { name, address: [{ street_name, number, district, city, state }] }: CompanyType = request.body;
@@ -44,10 +45,10 @@ class CompanyController {
 
     await CompaniesRepository.update(id, { name, address: [{ street_name, number, district, city, state }] });
 
-    response.status(200).json({message: 'Company updated successfully.'});
+    response.status(200).json({ message: 'Company updated successfully.' });
   }
 
-  async delete(request: Request, response: Response) {
+  async delete(request: Request, response: Response): Promise<void> {
     const { id } = request.params;
 
     await CompaniesRepository.delete(id);
