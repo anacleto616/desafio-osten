@@ -10,10 +10,14 @@ class CompanyController {
     response.json(companies);
   }
 
-  async show(request: Request, response: Response): Promise<void>  {
+  async show(request: Request, response: Response): Promise<void | Record<string, any>>  {
     const { id } = request.params;
 
     const company = await CompaniesRepository.findById(id);
+
+    if (!company) {
+      return response.status(404).json({ error: 'Company not found.' });
+    }
 
     response.json(company);
   }
