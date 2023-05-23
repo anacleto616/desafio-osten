@@ -5,4 +5,5 @@ export interface AddressType {
   district: string;
   city: string;
   state: string;
+  company_id?: number;
 }
