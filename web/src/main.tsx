@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import { QueryClientProvider } from 'react-query';
 import GlobalStyles from './assets/styles/global.ts';
+import { queryClient } from './libraries/queryClient.ts';
+import AppRoutes from './routes/AppRoutes.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyles />
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <AppRoutes />
+    </QueryClientProvider>
   </React.StrictMode>,
 )
