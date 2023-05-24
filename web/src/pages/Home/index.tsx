@@ -7,14 +7,31 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
 export default function Home() {
-  const { data: companies } = useQuery<CompanyType[]>('companies', async () => {
+  const { data: companies, refetch } = useQuery<CompanyType[]>('companies', async () => {
     const response = await api.get('/companies')
 
     return response.data;
   },
   {
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
+    staleTime: 0,
+    cacheTime: 0,
+    refetchInterval: 0,
   })
+
+
+  async function handleDeleteCompany(id: string) {
+    const beDeleted = confirm('Deseja realmente excluir esta empresa?');
+
+    if (beDeleted) {
+      await api.delete(`/companies/${id}`);
+      alert('Empresa excluída com sucesso!');
+      refetch
+      return;
+    }
+
+    return;
+  }
 
   return (
       <div className="container">
@@ -32,7 +49,7 @@ export default function Home() {
               </tr>
           </thead>
           <tbody>
-            {companies?.map(company => (
+            {companies && companies?.map(company => (
               <tr key={company.id}>
                 <td>{company.id}</td>
                 <td>{company.name}</td>
@@ -45,7 +62,7 @@ export default function Home() {
                   <Link to={`/edit/${company.id}`}><img src={edit} alt="ícone editar" /></Link>
                 </td>
                 <td>
-                  <button>
+                  <button onClick={() => handleDeleteCompany(String(company.id))}>
                     <img src={trash} alt="ícone deletar" />
                   </button>
                 </td>
