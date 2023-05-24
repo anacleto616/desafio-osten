@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { api } from "../../libraries/axios";
 import { CompanyType } from "../../types/CompanyType";
 
-import { Link } from "react-router-dom";
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
