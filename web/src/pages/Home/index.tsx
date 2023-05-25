@@ -15,12 +15,8 @@ export default function Home() {
   },
   {
     refetchOnWindowFocus: true,
-    staleTime: 0,
-    cacheTime: 0,
-    refetchInterval: 0,
   })
-
-
+  
   async function handleDeleteCompany(id: string) {
     const beDeleted = confirm('Deseja realmente excluir esta empresa?');
 
@@ -50,7 +46,7 @@ export default function Home() {
               </tr>
           </thead>
           <tbody>
-            {companies && companies?.map(company => (
+            {companies?.map(company => (
               <tr key={company.id}>
                 <td>{company.id}</td>
                 <td>{company.name}</td>
