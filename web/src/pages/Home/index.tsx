@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../../libraries/axios";
 import { CompanyType } from "../../types/CompanyType";
 
+import details from '../../assets/images/icons/details.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
@@ -58,6 +59,9 @@ export default function Home() {
                 <td>{company.address[0].district}</td>
                 <td>{company.address[0].city}</td>
                 <td>{company.address[0].state}</td>
+                <td>
+                  <Link to={`/details/${company.id}`}><img src={details} alt="ícone detalhes" /></Link>
+                </td>
                 <td>
                   <Link to={`/edit/${company.id}`}><img src={edit} alt="ícone editar" /></Link>
                 </td>
