@@ -4,6 +4,7 @@ import { CompanyType } from '../types/CompanyType';
 class CompaniesRepository {
   async findAll() {
     const row = await prisma.company.findMany({
+      orderBy: [{ id: 'asc' }],
       include: {
         address: { }
       }
