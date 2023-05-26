@@ -16,18 +16,18 @@ export const Form = styled.form`
     padding: 0 16px;
     font-size: 16px;
     transition: border-color 0.2s ease-in;
- }
-
- input:focus {
-    border-color: #112e5c;
- }
-
- p {
-    color: red;
-    font-weight: bold;
-    margin-top: 4px;
-    margin-bottom: 16px;
- }
+   }
+   
+   input:focus {
+      border-color: #112e5c;
+   }
+   
+   p {
+      color: red;
+      font-weight: bold;
+      margin-top: 4px;
+      margin-bottom: 16px;
+   }
 
  button {
     height: 52px;

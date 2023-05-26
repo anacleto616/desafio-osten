@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import DetailsCompany from "../pages/DetailsCompany";
+import EditCompany from "../pages/EditCompany";
 import Home from "../pages/Home";
 import NewCompany from "../pages/NewCompany";
 
@@ -12,7 +13,7 @@ export default function AppRoutes() {
           <Route path='/' element={<Home />}/>
           <Route path='/details/:id' element={<DetailsCompany />}/>
           <Route path='/new' element={<NewCompany />}/>
-          <Route path='/edit/:id' />
+          <Route path='/edit/:id' element={<EditCompany />}/>
         </Route>
       </Routes>
     </BrowserRouter>

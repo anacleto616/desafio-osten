@@ -21,12 +21,12 @@ export default function DetailsCompany() {
 
   return (
     <>
-    <BackLink>
-      <Link to='/'>
-        <img src={arrow} alt="" />
-        Voltar
-      </Link>
-    </BackLink>
+      <BackLink>
+        <Link to='/'>
+          <img src={arrow} alt="" />
+          Voltar
+        </Link>
+      </BackLink>
 
       <Container>
         <h2>Detalhes da Empresa</h2>
