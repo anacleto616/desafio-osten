@@ -2,9 +2,10 @@ import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../../libraries/axios";
 import { CompanyType } from "../../types/CompanyType";
-import { BackLink, Container } from "./styles";
+import { Container } from "./styles";
 
 import arrow from '../../assets/images/icons/arrow.svg';
+import { BackLink } from "../../components/BackLink";
 
 export default function DetailsCompany() {
   const { id } = useParams();

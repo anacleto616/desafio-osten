@@ -1,8 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { BackLink } from '../../components/BackLink';
 import { api } from '../../libraries/axios';
 import { CompanyType } from '../../types/CompanyType';
+import { Form } from './styles';
+
+import arrow from '../../assets/images/icons/arrow.svg';
 
 const validationCompany = yup.object().shape({
   name: yup.string().required('Nome obrigatório!'),
@@ -36,57 +41,52 @@ export default function NewCompany() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleCreateCompany)}>
-      <div>
-        <label >Nome da Empresa:</label>
-        <input
-          type="text"
-          {...register('name')}
-        />
-        <p>{errors.name?.message}</p>
-      </div>
-      <div>
-        <label>Rua/Avenida:</label>
-        <input
-          {...register(`address.${0}.street_name`)}
-          placeholder="Rua/Avenida"
-        />
-      </div>
-      <div>
-        <label>Número:</label>
-        <input
-          {...register(`address.${0}.number`)}
-          placeholder="número"
-        />
-      </div>
-      <div>
-        <label>Distrito:</label>
-        <input
-          {...register(`address.${0}.district`)}
-          placeholder="Distrito"
-        />
-      </div>
-      <div>
-        <label>Cidade:</label>
-        <input
-          {...register(`address.${0}.city`)}
-          placeholder="Cidade"
-        />
-      </div>
-      <div>
-        <label>Estado:</label>
-        <input
-          {...register(`address.${0}.state`)}
-          placeholder="Estado"
-        />
-      </div>
-      <div>
-        <button
-          type="submit"
-        >
-          Cadastrar Empresa
-        </button>
-      </div>
-    </form>
+    <>
+    <BackLink>
+      <Link to='/'>
+        <img src={arrow} alt="" />
+        Voltar
+      </Link>
+    </BackLink>
+
+    <Form onSubmit={handleSubmit(handleCreateCompany)}>
+      <input
+        type="text"
+        placeholder='Nome'
+        {...register('name')}
+      />
+
+      <input
+        {...register(`address.${0}.street_name`)}
+        placeholder="Rua/Avenida"
+      />
+
+      <input
+        {...register(`address.${0}.number`)}
+        placeholder="Número"
+      />
+
+      <input
+        {...register(`address.${0}.district`)}
+        placeholder="Distrito"
+      />
+
+      <input
+        {...register(`address.${0}.city`)}
+        placeholder="Cidade"
+      />
+
+      <input
+        {...register(`address.${0}.state`)}
+        placeholder="Estado"
+      />
+
+      <button
+        type="submit"
+      >
+        Cadastrar
+      </button>
+    </Form>
+  </>
   )
 }

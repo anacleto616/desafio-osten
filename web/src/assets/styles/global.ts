@@ -10,6 +10,7 @@ export default createGlobalStyle`
 
   body {
     font-size: 16px;
+    background-color: #f6f5fc;
   };
 
   button {
